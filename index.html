@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slide Show</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="slide-show">
+            <img src="images/bg1.jpg" alt="first image">
+        </div>
+        <div class="slide-show">
+            <img src="images/bg2.jpg" alt="second image">
+        </div>
+        <div class="slide-show">
+            <img src="images/bg3.jpg" alt="third image">
+        </div>
+
+        <a class="left" onclick="move_slides(-1)">&#10094;</a>
+        <a class="right" onclick="move_slides(1)">&#10095;</a>
+    </div>
+</body>
+
+<script>
+    var index = 1;
+
+    // arrow click function call
+    function move_slides(val) {
+        slide_show(index += val);
+    }
+
+    // for moving image left and right
+    function slide_show(val) {
+        // get all the slide which belong to class we mention
+        var slides = document.getElementsByClassName('slide-show');
+        if (val < 1) {
+            index = slides.length;
+        }
+        if (val > slides.length) {
+            index = 1;
+        }
+        var i;
+        // set the all slide to none for not displaying
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        // only display particular index slide in box
+        slides[index - 1].style.display = 'block';
+    }
+</script>
+
+</html>
